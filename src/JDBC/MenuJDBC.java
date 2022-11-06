@@ -281,10 +281,6 @@ public class MenuJDBC {
             }
         }
 
-
-
-
-
         // ! add Income test
         // addIncome(1, 7000, Date.valueOf("2020-01-01"), "bb", "cc", 1);
 

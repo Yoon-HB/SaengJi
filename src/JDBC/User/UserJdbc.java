@@ -85,4 +85,39 @@ public class UserJdbc {
             throw new IllegalStateException(e);
         }
     }
+
+    public Integer checkUser(String userID){
+
+        int result = 0;
+
+        String sql_checkUser = "SELECT ID FROM saengji.user WHERE userID = ?;";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = JDBC_Util.getConnection();
+            pstmt = conn.prepareStatement(sql_checkUser);
+            pstmt.setString(1, userID);
+
+            rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                result = rs.getInt("ID");
+            }
+
+            if(result==0){ // 중복 X
+                return 0;
+            }else{         // 중복 O
+                return 1;
+            }
+
+        } catch (SQLException ex) {
+
+            return 0;
+
+        }
+    }
 }
