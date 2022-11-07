@@ -37,6 +37,7 @@ public class IncomeSwing extends JFrame{
         jp2_2.add(J_incomeDate);
 
         JPanel jp2_3 = new JPanel();
+        jp2_3.setBorder(BorderFactory.createEmptyBorder(0,27,0,0));
         jp2_3.add(new JLabel("내용",JLabel.LEFT));
         J_content = new JTextField(20);
         jp2_3.add(J_content);

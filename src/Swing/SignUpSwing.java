@@ -117,11 +117,20 @@ public class SignUpSwing extends JFrame {
                 throw new RuntimeException(e);
             }
 
-
             //UserJDBC
             UserJdbc userJdbc = new UserJdbc();
-            System.out.println(userJdbc.saveUser(new User(singupID, sPW, sPNUM, Birth, sName)));
-            JOptionPane.showMessageDialog(null,"회원가입이 완료되었습니다.","Messeage",JOptionPane.PLAIN_MESSAGE);
+            int checkID = userJdbc.checkUser(singupID);
+
+            //UserID 중복 체크 ( 중복이 아닌 경우 = 0 / 중복일 경우 = 1)
+            if(checkID == 0){
+                System.out.println(userJdbc.saveUser(new User(singupID, sPW, sPNUM, Birth, sName)));
+                JOptionPane.showMessageDialog(null,"회원가입이 완료되었습니다.","Messeage",JOptionPane.PLAIN_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"중복 아이디입니다.","Messeage",JOptionPane.PLAIN_MESSAGE);
+//                setVisible(false);
+//                new SignUpSwing();
+            }
         }
     }
     // 돌아가기 버튼 클릭 이벤트 ( 회원가입 창은 안보이고 로그인창 띄우기)
